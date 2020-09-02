@@ -2,10 +2,11 @@ import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { AppLoading } from "expo";
+import { AppNavigation } from "./src/navigation/AppNavigation";
 import { bootstrap } from "./src/bootstrap";
 
 export default function App() {
-  const [isReady, setIsReady] = useState(false);
+  const [isReady, setIsReady] = useState(true);
 
   if (!isReady) {
     return (
@@ -17,10 +18,5 @@ export default function App() {
     );
   }
 
-  return (
-    <View>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+  return <AppNavigation />;
 }
