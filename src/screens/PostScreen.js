@@ -1,55 +1,47 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-
-// export class PostScreen extends React.Component {
-//   // static navigationOptions = (props) => {
-//   //   console.log(props.navigation);
-//   //   return {
-//   //     title: this.props.navigation.setParams({
-//   //       title: "A Nested Details Screen",
-//   //     }),
-//   //   };
-//   // };
-
-//   render() {
-//     //this.props.navigation.setParams("title", "A Nested Details Screen");
-//     //this.props.route.name = "123";
-//     console.log(this.props);
-//     return (
-//       <View style={styles.center}>
-//         <Text>PostScreen</Text>
-//       </View>
-//     );
-//   }
-// }
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  Button,
+  ScrollView,
+} from "react-native";
+import { THEME } from "../theme";
+import { DATA } from "../data";
 
 export const PostScreen = ({ navigation, route }) => {
+  const postId = route.params.postId;
+  const date = route.params.date;
+
+  const post = DATA.find((p) => p.id === postId);
+
   navigation.setOptions({
-    title: "Пост номер 42",
-    headerStyle: { backgroundColor: "red" },
+    title: "Пост от " + new Date(date).toLocaleDateString(),
+    //headerStyle: { backgroundColor: "red" },
     headerTintColor: "#fff",
   });
 
   return (
-    <View style={styles.center}>
-      <Text>PostScreen</Text>
-    </View>
+    <ScrollView>
+      <Image source={{ uri: post.img }} style={styles.image} />
+      <View style={styles.textWrap}>
+        <Text style={styles.title}>{post.text}</Text>
+      </View>
+      <Button title="Удалить" color={THEME.DANGER_COLOR} />
+    </ScrollView>
   );
 };
 
-// PostScreen.navigationOptions = {
-//   title: "123",
-//   headerStyle: { backgroundColor: "red" },
-// };
-// PostScreen.defaultNavigationOptions = {
-//   tabBarLabel: "Пост номер 42",
-//   title: "123",
-// };
-
 const styles = StyleSheet.create({
-  center: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+  image: {
+    width: "100%",
+    height: 200,
+  },
+  textWrap: {
+    padding: 10,
+  },
+  title: {
+    fontFamily: "open-regular",
   },
 });

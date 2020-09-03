@@ -28,7 +28,7 @@ const PostNavigator = () => {
         <Stack.Screen
           name="Main"
           component={MainScreen}
-          options={{ title: "Мой блог" }}
+          //options={{ title: "Мой блог" }}
         />
         <Stack.Screen
           name="Post"
