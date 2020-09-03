@@ -7,7 +7,7 @@ import { Platform } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { MainScreen } from "../screens/MainScreen";
 import { PostScreen } from "../screens/PostScreen";
-import { THEME } from "../theme";
+import THEME from "../theme";
 
 const Stack = createStackNavigator();
 

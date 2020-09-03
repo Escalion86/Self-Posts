@@ -1,11 +1,22 @@
 import React from "react";
 import { StyleSheet, Text, View, Button, FlatList } from "react-native";
+import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { DATA } from "../data";
 import { Post } from "../components/Post";
+import { AppHeaderIcon } from "../components/AppHeaderIcon";
 
 export const MainScreen = ({ navigation }) => {
   navigation.setOptions({
     title: "Мой блог",
+    headerRight: () => (
+      <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
+        <Item
+          title="Take photo"
+          iconName="ios-camera"
+          onPress={() => console.log("Press photo")}
+        />
+      </HeaderButtons>
+    ),
     //headerStyle: { backgroundColor: "red" },
     //headerTintColor: "#fff",
   });

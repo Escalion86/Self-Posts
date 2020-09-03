@@ -6,8 +6,9 @@ import {
   Image,
   Button,
   ScrollView,
+  Alert,
 } from "react-native";
-import { THEME } from "../theme";
+import THEME from "../theme";
 import { DATA } from "../data";
 
 export const PostScreen = ({ navigation, route }) => {
@@ -15,6 +16,21 @@ export const PostScreen = ({ navigation, route }) => {
   const date = route.params.date;
 
   const post = DATA.find((p) => p.id === postId);
+
+  const removeHandler = () => {
+    Alert.alert(
+      "Удаление поста",
+      "Вы точно хотите удалить пост?",
+      [
+        {
+          text: "Отменить",
+          style: "cancel",
+        },
+        { text: "Удалить", style: "destructive", onPress: () => {} },
+      ],
+      { cancelable: false }
+    );
+  };
 
   navigation.setOptions({
     title: "Пост от " + new Date(date).toLocaleDateString(),
@@ -28,7 +44,11 @@ export const PostScreen = ({ navigation, route }) => {
       <View style={styles.textWrap}>
         <Text style={styles.title}>{post.text}</Text>
       </View>
-      <Button title="Удалить" color={THEME.DANGER_COLOR} />
+      <Button
+        title="Удалить"
+        color={THEME.DANGER_COLOR}
+        onPress={removeHandler}
+      />
     </ScrollView>
   );
 };
