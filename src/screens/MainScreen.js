@@ -17,15 +17,15 @@ export const MainScreen = ({ navigation, route }) => {
         />
       </HeaderButtons>
     ),
-    headerLeft: () => (
-      <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
-        <Item
-          title="Toggle Drawer"
-          iconName="ios-menu"
-          onPress={() => console.log("Press photo")}
-        />
-      </HeaderButtons>
-    ),
+    // headerLeft: () => (
+    //   <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
+    //     <Item
+    //       title="Toggle Drawer"
+    //       iconName="ios-menu"
+    //       onPress={() => navigation.toggleDrawer()}
+    //     />
+    //   </HeaderButtons>
+    // ),
     //headerStyle: { backgroundColor: "red" },
     //headerTintColor: "#fff",
   });
