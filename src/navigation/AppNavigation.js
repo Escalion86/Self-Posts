@@ -104,42 +104,6 @@ const CreateStackScreen = ({ navigation }) => (
   </StackNavigator>
 );
 
-// const PostNavigator = () => {
-//   return (
-//     <>
-//       <NavigationContainer>
-//         <Stack.Navigator
-//           initialRouteName="Main"
-//           screenOptions={{
-//             headerTintColor:
-//               Platform.OS === "android" ? "white" : THEME.MAIN_COLOR,
-//             headerStyle: {
-//               backgroundColor:
-//                 Platform.OS === "android" ? THEME.MAIN_COLOR : "white",
-//             },
-//           }}
-//         >
-//           <Stack.Screen
-//             name="Main"
-//             component={MainScreen}
-//             //options={{ title: "Мой блог" }}
-//           />
-//           <Stack.Screen
-//             name="Post"
-//             component={PostScreen}
-//             // options={{
-//             //   title: "Пост номер 42",
-//             //   headerStyle: { backgroundColor: "red" },
-//             //   headerTintColor: "#fff",
-//             // }}
-//             // initialParams={{ user: 'me' }}
-//           />
-//         </Stack.Navigator>
-//       </NavigationContainer>
-//     </>
-//   );
-// };
-
 const tabsScreen = () => (
   <Tabs.Navigator
     activeColor={"#fff"}
@@ -224,17 +188,3 @@ export const AppNavigation = () => {
     </NavigationContainer>
   );
 };
-
-// const BookedNavigator = createStackNavigator({
-//   Booked: BookedScreen,
-//   Post: PostScreen,
-// });
-
-// const BottomNavigator = createBottomTabNavigator({
-//   Post: {
-//     screen: PostNavigator,
-//   },
-//   Booked: {
-//     screen: BookedNavigator,
-//   },
-// });
