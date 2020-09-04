@@ -5,7 +5,7 @@ import { DATA } from "../data";
 import { Post } from "../components/Post";
 import { AppHeaderIcon } from "../components/AppHeaderIcon";
 
-export const MainScreen = ({ navigation }) => {
+export const MainScreen = ({ navigation, route }) => {
   navigation.setOptions({
     title: "Мой блог",
     headerRight: () => (
@@ -41,7 +41,7 @@ export const MainScreen = ({ navigation }) => {
   return (
     <View style={styles.wrapper}>
       <FlatList
-        data={DATA}
+        data={DATA.filter((post) => !route.params.booked || post.booked)}
         keyExtractor={(post) => post.id.toString()}
         renderItem={({ item }) => <Post post={item} onOpen={openPostHandler} />}
       />

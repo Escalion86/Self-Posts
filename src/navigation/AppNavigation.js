@@ -7,7 +7,6 @@ import { createMaterialBottomTabNavigator } from "@react-navigation/material-bot
 import { Ionicons } from "@expo/vector-icons";
 import { MainScreen } from "../screens/MainScreen";
 import { PostScreen } from "../screens/PostScreen";
-import { BookedScreen } from "../screens/BookedScreen";
 import THEME from "../theme";
 
 const BookedStack = createStackNavigator();
@@ -33,14 +32,22 @@ const StackNavigator = ({ children }) => (
 
 const MainStackScreen = () => (
   <StackNavigator>
-    <MainStack.Screen name="Main" component={MainScreen} />
+    <MainStack.Screen
+      name="Main"
+      component={MainScreen}
+      initialParams={{ booked: false }}
+    />
     <MainStack.Screen name="Post" component={PostScreen} />
   </StackNavigator>
 );
 
 const BookedStackScreen = () => (
   <StackNavigator>
-    <BookedStack.Screen name="Booked" component={BookedScreen} />
+    <BookedStack.Screen
+      name="Booked"
+      component={MainScreen}
+      initialParams={{ booked: true }}
+    />
     <BookedStack.Screen name="Post" component={PostScreen} />
   </StackNavigator>
 );
