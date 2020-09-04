@@ -13,7 +13,7 @@ export const MainScreen = ({ navigation, route }) => {
     dispatch(loadPosts())
   }, [dispatch])
 
-  const allPosts = useSelector((state) => state.post.allPosts)
+  const posts = useSelector((state) => state.post.posts)
 
   navigation.setOptions({
     title: "Мой блог",
@@ -21,7 +21,7 @@ export const MainScreen = ({ navigation, route }) => {
       <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
         <Item
           title="Take photo"
-          iconName="ios-camera"
+          iconName="ios-add-circle"
           onPress={() => navigation.navigate("Create")}
         />
       </HeaderButtons>
@@ -50,7 +50,7 @@ export const MainScreen = ({ navigation, route }) => {
   return (
     <View style={styles.wrapper}>
       <FlatList
-        data={allPosts.filter((post) => !route.params.booked || post.booked)}
+        data={posts.filter((post) => !route.params.booked || post.booked)}
         keyExtractor={(post) => post.id.toString()}
         renderItem={({ item }) => <Post post={item} onOpen={openPostHandler} />}
       />

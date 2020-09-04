@@ -8,17 +8,20 @@ import {
   ScrollView,
   Alert,
 } from "react-native"
+import { useDispatch, useSelector } from "react-redux"
 import { HeaderButtons, Item } from "react-navigation-header-buttons"
 import { AppHeaderIcon } from "../components/AppHeaderIcon"
 import THEME from "../theme"
-import { DATA } from "../data"
+import { toggleBooked, deletePost } from "../store/actions/post"
 
 export const PostScreen = ({ navigation, route }) => {
-  console.log("PostScreen activated:", route)
+  const dispatch = useDispatch()
   const postId = route.params.postId
   const date = route.params.date
 
-  const post = DATA.find((p) => p.id === postId)
+  const post = useSelector((state) =>
+    state.post.posts.find((post) => post.id === postId)
+  )
 
   const removeHandler = () => {
     Alert.alert(
@@ -29,7 +32,14 @@ export const PostScreen = ({ navigation, route }) => {
           text: "Отменить",
           style: "cancel",
         },
-        { text: "Удалить", style: "destructive", onPress: () => {} },
+        {
+          text: "Удалить",
+          style: "destructive",
+          onPress: () => {
+            navigation.navigate("Main")
+            dispatch(deletePost(postId))
+          },
+        },
       ],
       { cancelable: false }
     )
@@ -43,12 +53,16 @@ export const PostScreen = ({ navigation, route }) => {
       <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
         <Item
           title="Take photo"
-          iconName={route.params.booked ? "ios-star" : "ios-star-outline"}
-          onPress={() => console.log("Press photo")}
+          iconName={post.booked ? "ios-star" : "ios-star-outline"}
+          onPress={() => dispatch(toggleBooked(postId))}
         />
       </HeaderButtons>
     ),
   })
+
+  if (!post) {
+    return null
+  }
 
   return (
     <ScrollView>
