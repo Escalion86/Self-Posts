@@ -87,6 +87,7 @@ export const AppNavigation = () => {
       <Tabs.Navigator
         activeColor={"#fff"}
         barStyle={{ backgroundColor: THEME.MAIN_COLOR }}
+        shifting={true}
         tabBarOptions={{
           activeTintColor: THEME.MAIN_COLOR,
         }}
