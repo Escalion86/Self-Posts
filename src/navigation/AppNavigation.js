@@ -25,22 +25,23 @@ const Tabs =
     ? createMaterialBottomTabNavigator()
     : createBottomTabNavigator();
 
-const StackNavigator = ({ children, navigation }) => (
+const burgerButton = (navigation) => (
+  <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
+    <Item
+      title="Toggle Drawer"
+      iconName="ios-menu"
+      onPress={() => navigation.toggleDrawer()}
+    />
+  </HeaderButtons>
+);
+
+const StackNavigator = ({ children }) => (
   <Stack.Navigator
     screenOptions={{
       headerTintColor: Platform.OS === "android" ? "white" : THEME.MAIN_COLOR,
       headerStyle: {
         backgroundColor: Platform.OS === "android" ? THEME.MAIN_COLOR : "white",
       },
-      headerLeft: () => (
-        <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
-          <Item
-            title="Toggle Drawer"
-            iconName="ios-menu"
-            onPress={() => navigation.toggleDrawer()}
-          />
-        </HeaderButtons>
-      ),
     }}
   >
     {children}
@@ -53,6 +54,10 @@ const MainStackScreen = ({ navigation }) => (
       name="Main"
       component={MainScreen}
       initialParams={{ booked: false }}
+      options={{
+        title: "Мой блог",
+        headerLeft: () => burgerButton(navigation),
+      }}
     />
     <MainStack.Screen name="Post" component={PostScreen} />
   </StackNavigator>
@@ -64,6 +69,10 @@ const BookedStackScreen = ({ navigation }) => (
       name="Booked"
       component={MainScreen}
       initialParams={{ booked: true }}
+      options={{
+        title: "Избранное",
+        headerLeft: () => burgerButton(navigation),
+      }}
     />
     <BookedStack.Screen name="Post" component={PostScreen} />
   </StackNavigator>
@@ -71,13 +80,27 @@ const BookedStackScreen = ({ navigation }) => (
 
 const AboutStackScreen = ({ navigation }) => (
   <StackNavigator navigation={navigation}>
-    <AboutStack.Screen name="About" component={AboutScreen} />
+    <AboutStack.Screen
+      name="About"
+      component={AboutScreen}
+      options={{
+        title: "О приложении",
+        headerLeft: () => burgerButton(navigation),
+      }}
+    />
   </StackNavigator>
 );
 
 const CreateStackScreen = ({ navigation }) => (
   <StackNavigator navigation={navigation}>
-    <CreateStack.Screen name="Create" component={CreateScreen} />
+    <CreateStack.Screen
+      name="Create"
+      component={CreateScreen}
+      options={{
+        title: "Создать пост",
+        headerLeft: () => burgerButton(navigation),
+      }}
+    />
   </StackNavigator>
 );
 
@@ -154,10 +177,49 @@ const Drawer = createDrawerNavigator();
 export const AppNavigation = () => {
   return (
     <NavigationContainer>
-      <Drawer.Navigator>
-        <Drawer.Screen name="Main" component={tabsScreen} />
-        <Drawer.Screen name="About" component={AboutStackScreen} />
-        <Drawer.Screen name="Create" component={CreateStackScreen} />
+      <Drawer.Navigator
+        drawerType="slide"
+        drawerContentOptions={{
+          activeTintColor: THEME.MAIN_COLOR,
+          labelStyle: {
+            fontFamily: "open-bold",
+          },
+        }}
+      >
+        <Drawer.Screen
+          name="Main"
+          component={tabsScreen}
+          options={{
+            drawerLabel: "Главная",
+            drawerIcon: () => (
+              <Ionicons name="ios-albums" size={24} color={THEME.MAIN_COLOR} />
+            ),
+          }}
+        />
+        <Drawer.Screen
+          name="About"
+          component={AboutStackScreen}
+          options={{
+            drawerLabel: "О приложении",
+            drawerIcon: () => (
+              <Ionicons name="md-book" size={24} color={THEME.MAIN_COLOR} />
+            ),
+          }}
+        />
+        <Drawer.Screen
+          name="Create"
+          component={CreateStackScreen}
+          options={{
+            drawerLabel: "Новый пост",
+            drawerIcon: () => (
+              <Ionicons
+                name="ios-add-circle"
+                size={24}
+                color={THEME.MAIN_COLOR}
+              />
+            ),
+          }}
+        />
       </Drawer.Navigator>
     </NavigationContainer>
   );
