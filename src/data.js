@@ -39,4 +39,4 @@ export const DATA = [
     date: new Date().toJSON(),
     booked: false,
   },
-];
+]

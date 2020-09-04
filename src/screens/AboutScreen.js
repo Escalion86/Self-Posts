@@ -1,5 +1,5 @@
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React from "react"
+import { StyleSheet, Text, View } from "react-native"
 
 export const AboutScreen = ({}) => {
   return (
@@ -9,8 +9,8 @@ export const AboutScreen = ({}) => {
         Версия приложения <Text style={styles.version}>1.0.0</Text>
       </Text>
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   center: {
@@ -21,4 +21,4 @@ const styles = StyleSheet.create({
   version: {
     fontFamily: "open-bold",
   },
-});
+})

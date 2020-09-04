@@ -1,19 +1,19 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { StyleSheet, Text, View, Button, FlatList } from "react-native";
-import { HeaderButtons, Item } from "react-navigation-header-buttons";
-import { Post } from "../components/Post";
-import { AppHeaderIcon } from "../components/AppHeaderIcon";
-import { loadPosts } from "../store/actions/post";
+import React, { useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { StyleSheet, Text, View, Button, FlatList } from "react-native"
+import { HeaderButtons, Item } from "react-navigation-header-buttons"
+import { Post } from "../components/Post"
+import { AppHeaderIcon } from "../components/AppHeaderIcon"
+import { loadPosts } from "../store/actions/post"
 
 export const MainScreen = ({ navigation, route }) => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(loadPosts());
-  }, [dispatch]);
+    dispatch(loadPosts())
+  }, [dispatch])
 
-  const allPosts = useSelector((state) => state.post.allPosts);
+  const allPosts = useSelector((state) => state.post.allPosts)
 
   navigation.setOptions({
     title: "Мой блог",
@@ -37,15 +37,15 @@ export const MainScreen = ({ navigation, route }) => {
     // ),
     //headerStyle: { backgroundColor: "red" },
     //headerTintColor: "#fff",
-  });
+  })
 
   const openPostHandler = (post) => {
     navigation.navigate("Post", {
       postId: post.id,
       date: post.date,
       booked: post.booked,
-    });
-  };
+    })
+  }
 
   return (
     <View style={styles.wrapper}>
@@ -55,11 +55,11 @@ export const MainScreen = ({ navigation, route }) => {
         renderItem={({ item }) => <Post post={item} onOpen={openPostHandler} />}
       />
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   wrapper: {
     padding: 10,
   },
-});
+})

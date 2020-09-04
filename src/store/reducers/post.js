@@ -1,8 +1,8 @@
-import { LOAD_POSTS } from "../types";
+import { LOAD_POSTS } from "../types"
 
 const initialState = {
   allPosts: [],
-};
+}
 
 export const postReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -10,8 +10,8 @@ export const postReducer = (state = initialState, action) => {
       return {
         ...state,
         allPosts: action.payload,
-      };
+      }
     default:
-      return state;
+      return state
   }
-};
+}

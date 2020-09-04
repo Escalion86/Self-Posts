@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"
 import {
   StyleSheet,
   Text,
@@ -7,18 +7,18 @@ import {
   Button,
   ScrollView,
   Alert,
-} from "react-native";
-import { HeaderButtons, Item } from "react-navigation-header-buttons";
-import { AppHeaderIcon } from "../components/AppHeaderIcon";
-import THEME from "../theme";
-import { DATA } from "../data";
+} from "react-native"
+import { HeaderButtons, Item } from "react-navigation-header-buttons"
+import { AppHeaderIcon } from "../components/AppHeaderIcon"
+import THEME from "../theme"
+import { DATA } from "../data"
 
 export const PostScreen = ({ navigation, route }) => {
-  console.log("PostScreen activated:", route);
-  const postId = route.params.postId;
-  const date = route.params.date;
+  console.log("PostScreen activated:", route)
+  const postId = route.params.postId
+  const date = route.params.date
 
-  const post = DATA.find((p) => p.id === postId);
+  const post = DATA.find((p) => p.id === postId)
 
   const removeHandler = () => {
     Alert.alert(
@@ -32,8 +32,8 @@ export const PostScreen = ({ navigation, route }) => {
         { text: "Удалить", style: "destructive", onPress: () => {} },
       ],
       { cancelable: false }
-    );
-  };
+    )
+  }
 
   navigation.setOptions({
     title: "Пост от " + new Date(date).toLocaleDateString(),
@@ -48,7 +48,7 @@ export const PostScreen = ({ navigation, route }) => {
         />
       </HeaderButtons>
     ),
-  });
+  })
 
   return (
     <ScrollView>
@@ -62,8 +62,8 @@ export const PostScreen = ({ navigation, route }) => {
         onPress={removeHandler}
       />
     </ScrollView>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   image: {
@@ -76,4 +76,4 @@ const styles = StyleSheet.create({
   title: {
     fontFamily: "open-regular",
   },
-});
+})

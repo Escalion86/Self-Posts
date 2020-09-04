@@ -1,11 +1,11 @@
-import React from "react";
+import React from "react"
 import {
   StyleSheet,
   View,
   ImageBackground,
   Text,
   TouchableOpacity,
-} from "react-native";
+} from "react-native"
 
 export const Post = ({ post, onOpen }) => {
   return (
@@ -20,8 +20,8 @@ export const Post = ({ post, onOpen }) => {
         </ImageBackground>
       </View>
     </TouchableOpacity>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   post: {
@@ -42,4 +42,4 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontFamily: "open-regular",
   },
-});
+})

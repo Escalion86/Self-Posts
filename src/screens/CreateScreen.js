@@ -1,13 +1,13 @@
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React from "react"
+import { StyleSheet, Text, View } from "react-native"
 
 export const CreateScreen = ({}) => {
   return (
     <View style={styles.center}>
       <Text>CreateScreen</Text>
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   center: {
@@ -15,4 +15,4 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-});
+})

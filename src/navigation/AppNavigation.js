@@ -1,29 +1,29 @@
-import React from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import { HeaderButtons, Item } from "react-navigation-header-buttons";
-import { AppHeaderIcon } from "../components/AppHeaderIcon";
+import React from "react"
+import { NavigationContainer } from "@react-navigation/native"
+import { HeaderButtons, Item } from "react-navigation-header-buttons"
+import { AppHeaderIcon } from "../components/AppHeaderIcon"
 
-import { Platform } from "react-native";
-import { createStackNavigator } from "@react-navigation/stack";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
-import { createDrawerNavigator } from "@react-navigation/drawer";
-import { Ionicons } from "@expo/vector-icons";
-import { MainScreen } from "../screens/MainScreen";
-import { PostScreen } from "../screens/PostScreen";
-import { AboutScreen } from "../screens/AboutScreen";
-import { CreateScreen } from "../screens/CreateScreen";
-import THEME from "../theme";
+import { Platform } from "react-native"
+import { createStackNavigator } from "@react-navigation/stack"
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
+import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs"
+import { createDrawerNavigator } from "@react-navigation/drawer"
+import { Ionicons } from "@expo/vector-icons"
+import { MainScreen } from "../screens/MainScreen"
+import { PostScreen } from "../screens/PostScreen"
+import { AboutScreen } from "../screens/AboutScreen"
+import { CreateScreen } from "../screens/CreateScreen"
+import THEME from "../theme"
 
-const BookedStack = createStackNavigator();
-const MainStack = createStackNavigator();
-const AboutStack = createStackNavigator();
-const CreateStack = createStackNavigator();
-const Stack = createStackNavigator();
+const BookedStack = createStackNavigator()
+const MainStack = createStackNavigator()
+const AboutStack = createStackNavigator()
+const CreateStack = createStackNavigator()
+const Stack = createStackNavigator()
 const Tabs =
   Platform.OS === "android"
     ? createMaterialBottomTabNavigator()
-    : createBottomTabNavigator();
+    : createBottomTabNavigator()
 
 const burgerButton = (navigation) => (
   <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
@@ -33,7 +33,7 @@ const burgerButton = (navigation) => (
       onPress={() => navigation.toggleDrawer()}
     />
   </HeaderButtons>
-);
+)
 
 const StackNavigator = ({ children }) => (
   <Stack.Navigator
@@ -46,7 +46,7 @@ const StackNavigator = ({ children }) => (
   >
     {children}
   </Stack.Navigator>
-);
+)
 
 const MainStackScreen = ({ navigation }) => (
   <StackNavigator navigation={navigation}>
@@ -61,7 +61,7 @@ const MainStackScreen = ({ navigation }) => (
     />
     <MainStack.Screen name="Post" component={PostScreen} />
   </StackNavigator>
-);
+)
 
 const BookedStackScreen = ({ navigation }) => (
   <StackNavigator navigation={navigation}>
@@ -76,7 +76,7 @@ const BookedStackScreen = ({ navigation }) => (
     />
     <BookedStack.Screen name="Post" component={PostScreen} />
   </StackNavigator>
-);
+)
 
 const AboutStackScreen = ({ navigation }) => (
   <StackNavigator navigation={navigation}>
@@ -89,7 +89,7 @@ const AboutStackScreen = ({ navigation }) => (
       }}
     />
   </StackNavigator>
-);
+)
 
 const CreateStackScreen = ({ navigation }) => (
   <StackNavigator navigation={navigation}>
@@ -102,7 +102,7 @@ const CreateStackScreen = ({ navigation }) => (
       }}
     />
   </StackNavigator>
-);
+)
 
 const tabsScreen = () => (
   <Tabs.Navigator
@@ -134,9 +134,9 @@ const tabsScreen = () => (
       }}
     />
   </Tabs.Navigator>
-);
+)
 
-const Drawer = createDrawerNavigator();
+const Drawer = createDrawerNavigator()
 
 export const AppNavigation = () => {
   return (
@@ -186,5 +186,5 @@ export const AppNavigation = () => {
         />
       </Drawer.Navigator>
     </NavigationContainer>
-  );
-};
+  )
+}
