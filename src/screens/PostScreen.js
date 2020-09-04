@@ -14,6 +14,7 @@ import THEME from "../theme";
 import { DATA } from "../data";
 
 export const PostScreen = ({ navigation, route }) => {
+  console.log("PostScreen activated:", route);
   const postId = route.params.postId;
   const date = route.params.date;
 
