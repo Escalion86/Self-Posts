@@ -17,12 +17,25 @@ export const MainScreen = ({ navigation }) => {
         />
       </HeaderButtons>
     ),
+    headerLeft: () => (
+      <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
+        <Item
+          title="Toggle Drawer"
+          iconName="ios-menu"
+          onPress={() => console.log("Press photo")}
+        />
+      </HeaderButtons>
+    ),
     //headerStyle: { backgroundColor: "red" },
     //headerTintColor: "#fff",
   });
 
   const openPostHandler = (post) => {
-    navigation.navigate("Post", { postId: post.id, date: post.date });
+    navigation.navigate("Post", {
+      postId: post.id,
+      date: post.date,
+      booked: post.booked,
+    });
   };
 
   return (

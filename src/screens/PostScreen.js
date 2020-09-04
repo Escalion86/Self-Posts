@@ -8,6 +8,8 @@ import {
   ScrollView,
   Alert,
 } from "react-native";
+import { HeaderButtons, Item } from "react-navigation-header-buttons";
+import { AppHeaderIcon } from "../components/AppHeaderIcon";
 import THEME from "../theme";
 import { DATA } from "../data";
 
@@ -36,6 +38,15 @@ export const PostScreen = ({ navigation, route }) => {
     title: "Пост от " + new Date(date).toLocaleDateString(),
     //headerStyle: { backgroundColor: "red" },
     headerTintColor: "#fff",
+    headerRight: () => (
+      <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
+        <Item
+          title="Take photo"
+          iconName={route.params.booked ? "ios-star" : "ios-star-outline"}
+          onPress={() => console.log("Press photo")}
+        />
+      </HeaderButtons>
+    ),
   });
 
   return (
