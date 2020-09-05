@@ -2,6 +2,7 @@ import { LOAD_POSTS, TOGGLE_BOOKED, DELETE_POST, ADD_POST } from "../types"
 
 const initialState = {
   posts: [],
+  loading: true,
 }
 
 export const postReducer = (state = initialState, action) => {
@@ -10,6 +11,7 @@ export const postReducer = (state = initialState, action) => {
       return {
         ...state,
         posts: action.payload,
+        loading: false,
       }
     case TOGGLE_BOOKED:
       const posts = state.posts.map((post) => {
