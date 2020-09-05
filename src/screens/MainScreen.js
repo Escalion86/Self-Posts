@@ -26,17 +26,6 @@ export const MainScreen = ({ navigation, route }) => {
         />
       </HeaderButtons>
     ),
-    // headerLeft: () => (
-    //   <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
-    //     <Item
-    //       title="Toggle Drawer"
-    //       iconName="ios-menu"
-    //       onPress={() => navigation.toggleDrawer()}
-    //     />
-    //   </HeaderButtons>
-    // ),
-    //headerStyle: { backgroundColor: "red" },
-    //headerTintColor: "#fff",
   })
 
   const openPostHandler = (post) => {
@@ -45,6 +34,18 @@ export const MainScreen = ({ navigation, route }) => {
       date: post.date,
       booked: post.booked,
     })
+  }
+
+  if (!posts.length) {
+    return (
+      <View style={styles.wrapper}>
+        <Text style={styles.noItems}>
+          {!route.params.booked
+            ? "Постов пока нет"
+            : "Избранных постов пока нет"}
+        </Text>
+      </View>
+    )
   }
 
   return (
@@ -61,5 +62,11 @@ export const MainScreen = ({ navigation, route }) => {
 const styles = StyleSheet.create({
   wrapper: {
     padding: 10,
+  },
+  noItems: {
+    fontFamily: "open-regular",
+    textAlign: "center",
+    marginVertical: 10,
+    fontSize: 18,
   },
 })

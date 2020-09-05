@@ -48,7 +48,10 @@ export const CreateScreen = ({ navigation }) => {
             onChangeText={setText}
             multiline={true}
           />
-          <PhotoPicker onPick={photoPickHandler} />
+          <PhotoPicker
+            onPick={photoPickHandler}
+            title={!img ? "Сделать фото" : "Изменить фото"}
+          />
           <Button
             title="Создать пост"
             color={THEME.MAIN_COLOR}
