@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useRef } from "react"
 import {
   StyleSheet,
   Text,
@@ -13,22 +13,27 @@ import {
 import { useDispatch } from "react-redux"
 import { addPost } from "../store/actions/post"
 import THEME from "../theme"
+import { PhotoPicker } from "../components/PhotoPicker"
 
 export const CreateScreen = ({ navigation }) => {
   dispatch = useDispatch()
   const [text, setText] = useState("")
+  const [img, setImg] = useState(null)
 
   const saveHandler = () => {
     const post = {
       id: new Date().toString(),
       date: new Date().toJSON(),
       text,
-      img:
-        "https://cdn.londonandpartners.com/visit/general-london/areas/river/76709-640x360-houses-of-parliament-and-london-eye-on-thames-from-above-640.jpg",
+      img,
       booked: false,
     }
     dispatch(addPost(post))
     navigation.navigate("Main")
+  }
+
+  const photoPickHandler = (uri) => {
+    setImg(uri)
   }
 
   return (
@@ -43,17 +48,12 @@ export const CreateScreen = ({ navigation }) => {
             onChangeText={setText}
             multiline={true}
           />
-          <Image
-            style={{ width: "100%", height: 200, marginBottom: 10 }}
-            source={{
-              uri:
-                "https://cdn.londonandpartners.com/visit/general-london/areas/river/76709-640x360-houses-of-parliament-and-london-eye-on-thames-from-above-640.jpg",
-            }}
-          />
+          <PhotoPicker onPick={photoPickHandler} />
           <Button
             title="Создать пост"
             color={THEME.MAIN_COLOR}
             onPress={saveHandler}
+            disabled={!text || !img}
           />
         </View>
       </TouchableWithoutFeedback>
