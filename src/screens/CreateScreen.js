@@ -27,8 +27,11 @@ export const CreateScreen = ({ navigation }) => {
       img,
       booked: false,
     }
+
     dispatch(addPost(post))
     navigation.navigate("Main")
+    setText("")
+    setImg(null)
   }
 
   const photoPickHandler = (uri) => {
@@ -50,6 +53,7 @@ export const CreateScreen = ({ navigation }) => {
           <PhotoPicker
             onPick={photoPickHandler}
             title={!img ? "Сделать фото" : "Изменить фото"}
+            img={img}
           />
           <Button
             title="Создать пост"

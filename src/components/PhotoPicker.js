@@ -15,9 +15,7 @@ async function askForPermissions() {
   return true
 }
 
-export const PhotoPicker = ({ onPick, title }) => {
-  const [image, setImage] = useState(null)
-
+export const PhotoPicker = ({ onPick, title, img }) => {
   const takePhoto = async () => {
     const hasPermissions = await askForPermissions()
 
@@ -25,21 +23,19 @@ export const PhotoPicker = ({ onPick, title }) => {
       return
     }
 
-    const img = await ImagePicker.launchCameraAsync({
+    const image = await ImagePicker.launchCameraAsync({
       quality: 0.7,
       allowsEditing: false,
       aspect: [16, 9],
     })
 
-    console.log("img", img)
-    setImage(img.uri)
-    onPick(img.uri)
+    onPick(image.uri)
   }
 
   return (
     <View style={styles.wrapper}>
       <Button title={title} onPress={takePhoto} />
-      {image && <Image style={styles.image} source={{ uri: image }} />}
+      {img && <Image style={styles.image} source={{ uri: img }} />}
     </View>
   )
 }
