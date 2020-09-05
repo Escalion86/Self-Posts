@@ -22,7 +22,6 @@ export const CreateScreen = ({ navigation }) => {
 
   const saveHandler = () => {
     const post = {
-      id: new Date().toString(),
       date: new Date().toJSON(),
       text,
       img,
